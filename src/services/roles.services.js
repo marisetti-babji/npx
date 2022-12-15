@@ -1,46 +1,44 @@
-const db = require('../config/connection')
+const db = require("../config/connection");
 //get roles
 const addrolesDetails = async (title) => {
   try {
-    if(!title){
-      throw 'roles details is required'
+    if (!title) {
+      throw "roles details is required";
     }
     let addData = {
       title: title,
     };
     const role = await db.roles.create(addData);
-     return role
+    return role;
   } catch (error) {
-    throw error
+    throw error;
   }
 };
 // 2.update roles
-const updateRoles = async (rolesid) => {
-  if(!rolesid){
-    throw "rolesid update is required"
-  }
+const updateRoles = async (rolesid, postJSON) => {
   try {
-  let rolesid = rolesid;
-
-  let role = await db.roles.update(req.body, { where: { rolesid: rolesid } });
-    return role
-}catch (error){
-  throw error
+    if (!rolesid) {
+      throw "rolesid update is required";
+    }
+    let role = await db.roles.update(postJSON, { where: { rolesid: rolesid } });
+    return role;
+  } catch (error) {
+    throw error;
   }
-}
+};
 
 //3.get all roles
 const getAllroles = async (req, res) => {
-  try{
-  let role = await db.roles.findAll({});
-  if(!role){
-    throw "roles data is required"
+  try {
+    let role = await db.roles.findAll({});
+    if (!role) {
+      throw "roles data is required";
+    }
+    return role;
+  } catch (error) {
+    throw error;
   }
-  return role;
-  }catch(error){
-   throw error
-   }
-  }
+};
 module.exports = {
   addrolesDetails,
   getAllroles,

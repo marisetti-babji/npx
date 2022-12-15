@@ -5,6 +5,6 @@ const controller =require('../controllers/employee.controller')
 
 router.post('/postEmployee',controller.addEmployeeDetailsRequest)
 
-router.get('/',controller.getEmployeeAndRolesRequest)
+router.get('/:rolesid',controller.getEmployeeAndRolesRequest)
 
 module.exports = router

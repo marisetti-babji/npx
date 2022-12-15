@@ -5,7 +5,7 @@ const controller =require('../controllers/roles.controller')
 
 router.post('/postRoles',controller.addrolesRequest);
 
-router.put('/',controller.updateRolesRequest)
+router.put('/:id',controller.updateRolesRequest)
 
 router.get('/getAll',controller.getAllrolesrequest)
 

@@ -24,11 +24,15 @@ const addrolesRequest = async (req, res) => {
 //2.update roles
 const updateRolesRequest = async (req, res) => {
   try {
-      const rolesid =req.params.rolesid;
-
-    const result = await rolesServices.updateRoles(rolesid);
+      const rolesid =req.params.id;
+    
+      const postJSON = req.body;
+   
+    const result = await rolesServices.updateRoles(rolesid, postJSON );
+    
     res.status(200).send({ success: true, data: result });
   } catch (error) {
+    console.log(error)
     switch (error) {
       case "rolesid update is required":
         res
@@ -47,7 +51,8 @@ const updateRolesRequest = async (req, res) => {
 const getAllrolesrequest = async (req, res) => {
   try {
     
-    const result = rolesServices.getAllroles();
+    const result = await rolesServices.getAllroles();
+    console.log('result',result);
     res.status(200).send({ success: true, data: result });
   } catch (error) {
     switch (error) {

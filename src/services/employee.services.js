@@ -1,7 +1,7 @@
 const db=require('../config/connection')
 
 //Employee Controllers
-
+//1.addEmployeedetails
 const addEmployeeDetails = async ( Fname, Lname, Email, rolesid) => {
   try{
   if(!Fname || !Lname || !Email || !rolesid){
@@ -22,11 +22,11 @@ const addEmployeeDetails = async ( Fname, Lname, Email, rolesid) => {
 
 //2.get employeeRoles(both)
 const getEmployeeRoles = async (rolesid) => {
-   if(! rolesid){
-   throw "rolesandEmployeedetails is required"
-   }
+   
   try{
-  let rolesid = req.params.rolesid;
+    if(! rolesid){
+      throw "rolesandEmployeedetails is required"
+      }
   let data = await db.employees.findAll({
     include: [
       {
@@ -35,7 +35,7 @@ const getEmployeeRoles = async (rolesid) => {
     ],
     where: { rolesid: rolesid },
   });
-  //console.log(data);
+
  return data;
 }catch(error){
   throw error
