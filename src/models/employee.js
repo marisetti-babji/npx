@@ -1,7 +1,5 @@
-const db = require("./index")
-
 module.exports = (sequelize,DataTypes)=>{
-    const employee = sequelize.define("employees",{
+    const employees = sequelize.define("employees",{
         id:{
            type :DataTypes.INTEGER,
            primaryKey:true,  autoIncrement: true,
@@ -18,13 +16,20 @@ module.exports = (sequelize,DataTypes)=>{
         type : DataTypes.STRING,
         allownull :false
        },
+
        rolesid:{
            type:DataTypes.INTEGER,
            ForeignKey:true
        }
+       
     }, { timestamps: false });
     
+    //Association
+    employees.associate = function(models) {
+        employees.belongsTo(models.roles, {
+          foreignKey: 'rolesid',
+        });
+    };
    
-    
-    return employee
+    return employees
 }

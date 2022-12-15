@@ -25,7 +25,7 @@ sequelize.authenticate()
 var filesArray =[
     '../models/roles',
     '../models/employee',
-    '../routes/index/employee'
+    
 ]
 const db={};
 
@@ -49,7 +49,7 @@ db.Sequelize = Sequelize;
     
 db.sequelize = sequelize;
 
-sequelize.sync ({force : true})
+sequelize.sync ({force : false})
 .then(()=>{
     console.log('tables created')
 })
